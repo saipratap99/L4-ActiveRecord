@@ -44,10 +44,7 @@ class Todo < ActiveRecord::Base
     puts "\n\n"
   end
   def self.add_task(new_todo)
-    new_todo[:due_date] = Date.today + new_todo[:due_in_days]
-    new_todo[:completed] = false
-    new_todo.reject! { |k, v| k == :due_in_days }
-    create!(new_todo)
+    create!(todo_text: new_todo[:todo_text], due_date: Date.today + new_todo[:due_in_days])
   end
 
   def self.mark_as_complete!(todo_id)
